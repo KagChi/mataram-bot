@@ -9,9 +9,6 @@ import { Message, MessageEmbed } from "discord.js";
 
 export class PingCommand extends Command {
     async run(message: Message, args: Args) {
-        for (const command of [...this.container.stores.get("commands").values()]) {
-            this.parseCategory(command);
-        }
 
         const userArgument = await args.restResult("string");
         if (userArgument.success) {
@@ -39,12 +36,6 @@ export class PingCommand extends Command {
         message.channel.send({ embeds: [embed] });
     }
 
-    public parseCategory(command: Command) {
-        const path = command.path.split("/");
-        // @ts-ignore
-        command.category = path[path.length - 2];
-        return command;
-    }
 }
 
 declare module "@sapphire/framework" {

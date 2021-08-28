@@ -9,7 +9,6 @@ import { Message, MessageEmbed } from "discord.js";
 
 export class PingCommand extends Command {
     async run(message: Message, args: Args) {
-
         const userArgument = await args.restResult("string");
         if (userArgument.success) {
             const command = this.container.stores.get("commands").get(userArgument.value);
@@ -34,12 +33,5 @@ export class PingCommand extends Command {
             });
         }
         message.channel.send({ embeds: [embed] });
-    }
-
-}
-
-declare module "@sapphire/framework" {
-    export interface Command {
-        category: string | null;
     }
 }

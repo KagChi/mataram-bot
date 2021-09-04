@@ -19,7 +19,7 @@ export class readyEvent extends Listener {
             name: botActivity,
             type: botActivityType
         });
-        const selfRoleChannel = this.container.client.channels.cache.get(botSelfRoleChannelId) as TextBasedChannels
+        const selfRoleChannel = this.container.client.channels.cache.get(botSelfRoleChannelId) as TextBasedChannels;
         if (selfRoleChannel) {
             const message = await selfRoleChannel.messages.fetch(botSelfRoleMessageId);
             message.edit({
@@ -31,9 +31,9 @@ export class readyEvent extends Listener {
                         .setDescription("> React 👩 untuk mendapatkan <@&883612750239109181>\n> React 👨 untuk mendapatkan <@&882928013203865602>\n")
                 ],
                 content: null
-            })
-            for (let react of reaction) {
-                message.react(react)
+            });
+            for (const react of reaction) {
+                message.react(react);
             }
         }
         const channel = this.container.client.channels.cache.get("881013594509160468") as TextBasedChannels;
@@ -59,7 +59,7 @@ export class readyEvent extends Listener {
                 }
             });
         }, 60000).unref();
-        
+
         return this.container.logger.info(chalk.green(`[CLIENT]: ${this.container.client.user?.username.toUpperCase()} CONNECTED TO DISCORD`));
     }
 }

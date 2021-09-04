@@ -5,7 +5,7 @@ import { botSelfRole1Id, botSelfRole2Id, botSelfRoleChannelId, botSelfRoleMessag
 
 
 @ApplyOptions<ListenerOptions>({
-    name: "messageReactionAdd",
+    name: "messageReactionAdd"
 })
 
 export class readyEvent extends Listener {

@@ -4,7 +4,7 @@ import { MessageReaction, User } from "discord.js";
 import { botSelfRole1Id, botSelfRole2Id, botSelfRoleChannelId, botSelfRoleMessageId } from "../config";
 
 @ApplyOptions<ListenerOptions>({
-    name: "messageReactionRemove",
+    name: "messageReactionRemove"
 })
 
 export class readyEvent extends Listener {

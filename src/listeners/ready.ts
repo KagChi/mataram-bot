@@ -1,11 +1,12 @@
 import { Listener, ListenerOptions } from "@sapphire/framework";
 import { ApplyOptions } from "@sapphire/decorators";
 import chalk from "chalk";
-import { botActivity, botActivityType } from "../config";
+import { botActivity, botActivityType, botSelfRoleChannelId, botSelfRoleMessageId } from "../config";
 import { MessageAttachment, MessageEmbed, TextBasedChannels } from "discord.js";
 import { oneCak } from "../Util/oneCakScrape";
 import { get } from "superagent";
 const emoji = ["😂", "🔼", "🔽"];
+const reaction = ["👩", "👨"];
 
 @ApplyOptions<ListenerOptions>({
     name: "ready",
@@ -18,6 +19,23 @@ export class readyEvent extends Listener {
             name: botActivity,
             type: botActivityType
         });
+        const selfRoleChannel = this.container.client.channels.cache.get(botSelfRoleChannelId) as TextBasedChannels
+        if (selfRoleChannel) {
+            const message = await selfRoleChannel.messages.fetch(botSelfRoleMessageId);
+            message.edit({
+                embeds: [
+                    new MessageEmbed()
+                        .setColor("BLURPLE")
+                        .setTitle("Self Role")
+                        .setThumbnail(message.guild?.iconURL()!)
+                        .setDescription("> React 👩 untuk mendapatkan <@&883612750239109181>\n> React 👨 untuk mendapatkan <@&882928013203865602>\n")
+                ],
+                content: null
+            })
+            for (let react of reaction) {
+                message.react(react)
+            }
+        }
         const channel = this.container.client.channels.cache.get("881013594509160468") as TextBasedChannels;
         if (!channel?.isText()) return;
         setInterval(async () => {
@@ -41,7 +59,7 @@ export class readyEvent extends Listener {
                 }
             });
         }, 60000).unref();
-
+        
         return this.container.logger.info(chalk.green(`[CLIENT]: ${this.container.client.user?.username.toUpperCase()} CONNECTED TO DISCORD`));
     }
 }

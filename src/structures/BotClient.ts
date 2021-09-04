@@ -14,7 +14,7 @@ export class BotClient extends SapphireClient {
             caseInsensitiveCommands: true,
             caseInsensitivePrefixes: true,
             defaultPrefix: botPrefix,
-            intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+            intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_PRESENCES],
             ...clientOptions
         });
     }

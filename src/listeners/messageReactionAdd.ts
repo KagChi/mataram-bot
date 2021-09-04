@@ -8,7 +8,7 @@ import { botSelfRole1Id, botSelfRole2Id, botSelfRoleChannelId, botSelfRoleMessag
     name: "messageReactionAdd"
 })
 
-export class readyEvent extends Listener {
+export class messageReactionAddEvent extends Listener {
     async run(messageReaction: MessageReaction, user: User) {
         if (messageReaction.message.id! !== botSelfRoleMessageId || user.bot || !messageReaction.message.guild) return;
         if (messageReaction.message.channelId === botSelfRoleChannelId && messageReaction.message.id === botSelfRoleMessageId) {

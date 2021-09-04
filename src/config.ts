@@ -7,3 +7,4 @@ export const botSelfRoleChannelId: Snowflake = "883613368794116096";
 export const botSelfRoleMessageId: Snowflake = "883613644099825685";
 export const botSelfRole1Id: Snowflake = "882928013203865602";
 export const botSelfRole2Id: Snowflake = "883612750239109181";
+export const botWelcomeChannelId: Snowflake = "848589561735020567";
